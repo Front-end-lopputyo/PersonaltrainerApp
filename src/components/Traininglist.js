@@ -14,12 +14,16 @@ function Traininglist() {
       };
 
       const [columnDefs] = useState([
-        {field: "date", sortable: true, filter: true, flex: 1},
+        {field: "date", sortable: true, filter: true, flex: 1, cellRenderer: ({ value }) => {
+          const date = new Date(value);
+          const formattedDate = `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()} ${date.getHours()}:${String(date.getMinutes()).padStart(2, '0')}`;
+          return formattedDate;
+        }},
         {field: "duration", sortable: true, filter: true, flex:1},
         {field: "activity", sortable: true, filter: true, flex:1},
         {field: "customer.firstname",headerName: "Firstname", sortable: true, filter: true, flex:1}
-        
     ])
+
 
     return (
         <div className="ag-theme-material"
