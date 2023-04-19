@@ -28,7 +28,7 @@ function Addcustomer(props) {
     const listCustomer = () => {
         props.saveCustomer(customer);
         handleClose();
-
+    }
         return (
             <div>
                 <Button style={{ margin: 10, display: "flex", marginLeft: "left" }} variant="outlined" onClick={handleClickOpen}>
@@ -110,5 +110,5 @@ function Addcustomer(props) {
             </div>
         )
     }
-}
+
 export default Addcustomer;
