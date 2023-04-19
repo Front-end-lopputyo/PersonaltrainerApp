@@ -14,7 +14,7 @@ function Customerlist() {
         fetch('https://traineeapp.azurewebsites.net/api/customers')
         .then(response => response.json())
         .then(data => setCustomers(data.content))
-    }
+    };
 
     const saveCustomer = (customer) => {
         fetch('https://traineeapp.azurewebsites.net/api/customers',{
@@ -28,6 +28,14 @@ function Customerlist() {
         .catch(err => console.error(err))
       }
 
+      const deleteCustomer = (params) => {
+        if (window.confirm("click confirm delete")){
+            fetch(params,{method: "DELETE"})
+      .then(res => fetchData())
+      .catch(err => console.error(err))
+        }
+      };
+
     const [columnDefs] = useState([
         {field: "firstname", sortable: true, filter: true, flex: 1},
         {field: "lastname", sortable: true, filter: true, flex:1},
@@ -35,7 +43,9 @@ function Customerlist() {
         {field: "postcode", sortable: true, filter: true,flex:1},
         {field: "city", sortable: true, filter: true,flex:1},
         {field: "email", sortable: true, filter: true,flex:1},
-        {field: "phone", sortable: true, filter: true,flex:1}])
+        {field: "phone", sortable: true, filter: true,flex:1},
+       
+    ])
 
         
 
