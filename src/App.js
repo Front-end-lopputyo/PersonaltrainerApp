@@ -8,6 +8,7 @@ import {
   Link
   } from "react-router-dom";
 import Header from './components/Header';
+import { Button } from '@mui/material';
 // react-router by Atte Mäkinen
 function App() {
   return (
@@ -15,8 +16,8 @@ function App() {
       
             <Header/>
                  <BrowserRouter>
-            <Link to="/">Training</Link>{' '}
-            <Link to="/customers">Customers</Link>{' '}
+            <Link to="/"><Button style={{margin:10}} variant="contained" >Trainings</Button></Link>{' '}
+            <Link to="/customers"><Button variant="contained">Customers</Button></Link>{' '}
 
             <Routes>
             <Route exact path="/" element={<Traininglist/>} />
