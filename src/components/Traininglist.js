@@ -1,6 +1,5 @@
 import { AgGridReact } from "ag-grid-react";
 import React, {useState, useEffect} from "react";
-// coded by Atte Mäkinen
 function Traininglist() {
     const [trainings, setTrainings] =useState ([]);
 
