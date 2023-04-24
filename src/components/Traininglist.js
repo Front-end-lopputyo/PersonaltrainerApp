@@ -1,6 +1,8 @@
 import { AgGridReact } from "ag-grid-react";
 import React, {useState, useEffect} from "react";
 import Addtraining from "./Addtraining";
+import dayjs from 'dayjs';
+
 function Traininglist() {
     const [trainings, setTrainings] =useState ([]);
 
@@ -14,12 +16,17 @@ function Traininglist() {
       };
 
       const saveTraining = (training) => {
-        fetch ("https://traineeapp.azurewebsites.net/gettrainings",{
+        fetch ("https://traineeapp.azurewebsites.net/api/trainings",{
           method: "POST",
           headers: {
             "Content-Type" : "application/json"
           },
-          body: JSON.stringify(training)
+          body: JSON.stringify({
+            date: dayjs(training.date).toISOString,
+            activity: "Gym training",
+            duration: "60",
+            customer: "https://traineeapp.azurewebsites.net/api/customers/1700",
+          })
         })
       }
 

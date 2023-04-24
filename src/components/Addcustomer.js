@@ -43,7 +43,7 @@ function Addcustomer(props) {
                             name="firstname"
                             value={customer.firstname}
                             onChange={e => handleInputChange(e)}
-                            label="firstname"
+                            label="First name"
                             fullWidth
                             variant="standard"
                         />
@@ -52,7 +52,7 @@ function Addcustomer(props) {
                             name="lastname"
                             value={customer.lastname}
                             onChange={e => handleInputChange(e)}
-                            label="lastname"
+                            label="Last name"
                             fullWidth
                             variant="standard"
                         />
@@ -61,7 +61,7 @@ function Addcustomer(props) {
                             name="streetaddress"
                             value={customer.streetaddress}
                             onChange={e => handleInputChange(e)}
-                            label="streetaddress"
+                            label="Street address"
                             fullWidth
                             variant="standard"
                         />
@@ -70,7 +70,7 @@ function Addcustomer(props) {
                             name="postcode"
                             value={customer.postcode}
                             onChange={e => handleInputChange(e)}
-                            label="postcode"
+                            label="Postcode"
                             fullWidth
                             variant="standard"
                         />
@@ -79,7 +79,7 @@ function Addcustomer(props) {
                             name="city"
                             value={customer.city}
                             onChange={e => handleInputChange(e)}
-                            label="city"
+                            label="City"
                             fullWidth
                             variant="standard"
                         />
@@ -88,7 +88,7 @@ function Addcustomer(props) {
                             name="email"
                             value={customer.email}
                             onChange={e => handleInputChange(e)}
-                            label="email"
+                            label="Email address"
                             fullWidth
                             variant="standard"
                         />
@@ -97,7 +97,7 @@ function Addcustomer(props) {
                             name="phone"
                             value={customer.phone}
                             onChange={e => handleInputChange(e)}
-                            label="phone"
+                            label="Phone number"
                             fullWidth
                             variant="standard"
                         />

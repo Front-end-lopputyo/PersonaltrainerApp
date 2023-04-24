@@ -10,7 +10,7 @@ export default function Header() {
           <AppBar position="static">
             <Toolbar>
               <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                personaltrainer app
+                Personal trainer app
               </Typography>
             </Toolbar>
           </AppBar>
