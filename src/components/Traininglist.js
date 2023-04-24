@@ -22,7 +22,7 @@ function Traininglist() {
             "Content-Type" : "application/json"
           },
           body: JSON.stringify({
-            date: dayjs(training.date).toISOString,
+            date: dayjs(training.date).toISOString(),
             activity: "Gym training",
             duration: "60",
             customer: "https://traineeapp.azurewebsites.net/api/customers/1700",
