@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -12,13 +12,23 @@ import 'dayjs/locale/fi';
 import { StaticDateTimePicker } from '@mui/x-date-pickers/StaticDateTimePicker';
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 
+
 function Addtraining(props) {
     const [open, setOpen] = React.useState(false);
     const [training, setTraining] = React.useState({
-        date: dayjs(new Date()), duration: "", activity: "",
+        date: dayjs(new Date()), duration: "", activity: "", customer: "",
     });
     const [customer, setCustomer] = React.useState("");
     const [customerList, setCustomerList] = React.useState([]);
+
+    useEffect(()=>fetchCustomers(), []);
+
+    const fetchCustomers = ()=> {
+        fetch("https://traineeapp.azurewebsites.net/getcustomers")
+        .then(response => response.json())
+        .then(data =>setCustomerList(data))
+        .catch(err => console.error(err))
+      };
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -89,7 +99,7 @@ function Addtraining(props) {
                             onChange={(e) => setCustomer(e.target.value)}
                         >
                             {customerList.map((customer) => (
-                                <MenuItem key={customer.links[0].href} value={customer.links[0].href}>
+                                <MenuItem key={customer.id} value={customer.id}>
                                     {customer.firstname} {customer.lastname}
                                 </MenuItem>
                             ))}

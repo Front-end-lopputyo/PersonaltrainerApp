@@ -25,7 +25,7 @@ function Traininglist() {
             date: dayjs(training.date).toISOString(),
             activity: training.activity,
             duration: training.duration,
-            customer: "https://traineeapp.azurewebsites.net/api/customers/1700",
+            customer: training.customer,
           })
         })
       }
