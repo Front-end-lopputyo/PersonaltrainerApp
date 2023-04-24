@@ -10,12 +10,15 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import dayjs from 'dayjs';
 import 'dayjs/locale/fi';
 import { StaticDateTimePicker } from '@mui/x-date-pickers/StaticDateTimePicker';
+import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 
 function Addtraining(props) {
     const [open, setOpen] = React.useState(false);
     const [training, setTraining] = React.useState({
-        date: dayjs(new Date()), duration: "", activity: "", 
+        date: dayjs(new Date()), duration: "", activity: "",
     });
+    const [customer, setCustomer] = React.useState("");
+    const [customerList, setCustomerList] = React.useState([]);
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -25,9 +28,9 @@ function Addtraining(props) {
         setOpen(false);
     };
     const handleDateChange = (date) => {
-        
+
         setTraining({ ...training, date: date });
-      }
+    }
 
     const handleInputChange = (event) => {
         setTraining({ ...training, [event.target.name]: event.target.value })
@@ -37,18 +40,18 @@ function Addtraining(props) {
         props.saveTraining(training);
         handleClose();
     }
-        return (
-            <div>
-                <Button style={{ margin: 10, display: "flex", marginLeft: "left" }}  color="success" variant="outlined" onClick={handleClickOpen}>
-                    Add Training
-                </Button>
-                <Dialog open={open} onClose={handleClose}>
-                    <DialogTitle>New training</DialogTitle>
-                    <DialogContent>
-                    <LocalizationProvider dateAdapter={AdapterDayjs}adapterLocale="fi">
-                    
+    return (
+        <div>
+            <Button style={{ margin: 10, display: "flex", marginLeft: "left" }} color="success" variant="outlined" onClick={handleClickOpen}>
+                Add Training
+            </Button>
+            <Dialog open={open} onClose={handleClose}>
+                <DialogTitle>New training</DialogTitle>
+                <DialogContent>
+                    <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="fi">
+
                         <StaticDateTimePicker defaultValue={dayjs('2022-04-17T15:30')}
-                       
+
                             autoFocus
                             margin="dense"
                             name="date"
@@ -58,35 +61,48 @@ function Addtraining(props) {
                             fullWidth
                             variant="standard"
                         />
-                        </LocalizationProvider>
-                        <TextField
-                            margin="dense"
-                            name="duration"
-                            format="DD-MM-YYYY"
-                            value={training.duration}
-                            onChange={e => handleInputChange(e)}
-                            label="Duration"
-                            fullWidth
-                            variant="standard"
-                        />
-                        <TextField
-                            margin="dense"
-                            name="activity"
-                            value={training.activity}
-                            onChange={e => handleInputChange(e)}
-                            label="Activity"
-                            fullWidth
-                            variant="standard"
-                        />
-                 
-                    </DialogContent>
-                    <DialogActions>
-                        <Button onClick={handleClose}>Cancel</Button>
-                        <Button onClick={listTraining}>Save</Button>
-                    </DialogActions>
-                </Dialog>
-            </div>
-        )
-    }
+                    </LocalizationProvider>
+                    <TextField
+                        margin="dense"
+                        name="duration"
+                        format="DD-MM-YYYY"
+                        value={training.duration}
+                        onChange={e => handleInputChange(e)}
+                        label="Duration"
+                        fullWidth
+                        variant="standard"
+                    />
+                    <TextField
+                        margin="dense"
+                        name="activity"
+                        value={training.activity}
+                        onChange={e => handleInputChange(e)}
+                        label="Activity"
+                        fullWidth
+                        variant="standard"
+                    />
+                    <FormControl fullWidth variant="standard">
+                        <InputLabel>Customer</InputLabel>
+                        <Select
+                            id="customer"
+                            value={customer}
+                            onChange={(e) => setCustomer(e.target.value)}
+                        >
+                            {customerList.map((customer) => (
+                                <MenuItem key={customer.links[0].href} value={customer.links[0].href}>
+                                    {customer.firstname} {customer.lastname}
+                                </MenuItem>
+                            ))}
+                        </Select>
+                    </FormControl>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleClose}>Cancel</Button>
+                    <Button onClick={listTraining}>Save</Button>
+                </DialogActions>
+            </Dialog>
+        </div>
+    )
+}
 
 export default Addtraining;
