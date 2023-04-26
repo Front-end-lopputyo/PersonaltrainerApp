@@ -44,7 +44,10 @@ function Customerlist() {
         {field: "city", sortable: true, filter: true,flex:1},
         {field: "email", sortable: true, filter: true,flex:1},
         {field: "phone", sortable: true, filter: true,flex:1},
-       
+        {headerName: "Delete", cellRenderer: function(params){
+          return params.data.links.map(function(link) {
+            return link.href + link.rel;
+          }).join(', ');}}
     ])
 
         

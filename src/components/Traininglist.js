@@ -38,7 +38,7 @@ function Traininglist() {
         }},
         {field: "duration", sortable: true, filter: true, flex:1},
         {field: "activity", sortable: true, filter: true, flex:1},
-        {field: "customer.firstname",headerName: "Firstname", sortable: true, filter: true, flex:1}
+        {field: "customer.firstname",headerName: "Firstname", sortable: true, filter: true, flex:1},
     ])
 
 
