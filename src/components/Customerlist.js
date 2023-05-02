@@ -3,6 +3,7 @@ import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-material.css';
 import React ,{ useEffect, useState } from "react"
 import Addcustomer from "./Addcustomer";
+import Button from '@mui/material/Button'
 
 function Customerlist() {
 
@@ -29,12 +30,17 @@ function Customerlist() {
       }
 
       const deleteCustomer = (params) => {
-        if (window.confirm("click confirm delete")){
-            fetch(params,{method: "DELETE"})
-      .then(res => fetchData())
-      .catch(err => console.error(err))
-        }
-      };
+        if (window.confirm('Confirm delete')) {
+        fetch(params.data.links[0].href, {method: "DELETE"})
+        .then(response => {
+          if (response.ok){
+            fetchData();
+          }
+        })
+        .catch(err => console.error(err))
+      }
+    }
+
 
     const [columnDefs] = useState([
         {field: "firstname", sortable: true, filter: true, flex: 1},
@@ -44,11 +50,12 @@ function Customerlist() {
         {field: "city", sortable: true, filter: true,flex:1},
         {field: "email", sortable: true, filter: true,flex:1},
         {field: "phone", sortable: true, filter: true,flex:1},
-        {headerName: "Delete", cellRenderer: function(params){
-          return params.data.links.map(function(link) {
-            return link.href + link.rel;
-          }).join(', ');}}
+        {headerName: "Delete", cellRenderer: params => 
+          <Button size="small" color="error" onClick={() => deleteCustomer(params)}>
+              Delete</Button>, 
+          width: 120}
     ])
+
 
         
 
