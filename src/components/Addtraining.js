@@ -15,18 +15,17 @@ import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 
 function Addtraining(props) {
     const [open, setOpen] = React.useState(false);
-    const [training, setTraining] = React.useState({
-        date: dayjs(new Date()), duration: "", activity: "", customer: "",
-    });
     const [customer, setCustomer] = React.useState("");
+    const [training, setTraining] = React.useState({
+        date: dayjs(new Date()), duration: "", activity: "", customer: customer,
+    });
     const [customerList, setCustomerList] = React.useState([]);
-
     useEffect(()=>fetchCustomers(), []);
 
     const fetchCustomers = ()=> {
-        fetch("https://traineeapp.azurewebsites.net/getcustomers")
+        fetch("https://traineeapp.azurewebsites.net/api/customers")
         .then(response => response.json())
-        .then(data =>setCustomerList(data))
+        .then(data =>setCustomerList(data.content))
         .catch(err => console.error(err))
       };
 
@@ -38,12 +37,15 @@ function Addtraining(props) {
         setOpen(false);
     };
     const handleDateChange = (date) => {
-
         setTraining({ ...training, date: date });
     }
 
     const handleInputChange = (event) => {
         setTraining({ ...training, [event.target.name]: event.target.value })
+    };
+
+    const handleCustomerChange = (event) => {
+        setTraining({ ...training, customer: customer })
     };
 
     const listTraining = () => {
@@ -96,10 +98,15 @@ function Addtraining(props) {
                         <Select
                             id="customer"
                             value={customer}
-                            onChange={(e) => setCustomer(e.target.value)}
+                            // this sets customer to the link for the profile page
+                            onChange={(e) => {
+                                setCustomer(e.target.value);
+                                handleCustomerChange(e);
+                                console.log(training)}
+                            }
                         >
                             {customerList.map((customer) => (
-                                <MenuItem key={customer.id} value={customer.id}>
+                                <MenuItem key={customer.links[0].href} value={customer.links[0].href}>
                                     {customer.firstname} {customer.lastname}
                                 </MenuItem>
                             ))}
