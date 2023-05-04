@@ -20,14 +20,14 @@ function Addtraining(props) {
         date: dayjs(new Date()), duration: "", activity: "", customer: customer,
     });
     const [customerList, setCustomerList] = React.useState([]);
-    useEffect(()=>fetchCustomers(), []);
+    useEffect(() => fetchCustomers(), []);
 
-    const fetchCustomers = ()=> {
+    const fetchCustomers = () => {
         fetch("https://traineeapp.azurewebsites.net/api/customers")
-        .then(response => response.json())
-        .then(data =>setCustomerList(data.content))
-        .catch(err => console.error(err))
-      };
+            .then(response => response.json())
+            .then(data => setCustomerList(data.content))
+            .catch(err => console.error(err))
+    };
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -44,8 +44,9 @@ function Addtraining(props) {
         setTraining({ ...training, [event.target.name]: event.target.value })
     };
 
-    const handleCustomerChange = (event) => {
-        setTraining({ ...training, customer: customer })
+    const handleCustomerChange = (selectedCustomer) => {
+        setCustomer(selectedCustomer);
+        setTraining({ ...training, customer: selectedCustomer })
     };
 
     const listTraining = () => {
@@ -100,9 +101,9 @@ function Addtraining(props) {
                             value={customer}
                             // this sets customer to the link for the profile page
                             onChange={(e) => {
-                                setCustomer(e.target.value);
-                                handleCustomerChange(e);
-                                console.log(training)}
+                                handleCustomerChange(e.target.value);
+                                console.log(training);
+                            }
                             }
                         >
                             {customerList.map((customer) => (
@@ -110,6 +111,7 @@ function Addtraining(props) {
                                     {customer.firstname} {customer.lastname}
                                 </MenuItem>
                             ))}
+
                         </Select>
                     </FormControl>
                 </DialogContent>
