@@ -6,15 +6,17 @@ import dayjs from 'dayjs';
 function Traininglist() {
     const [trainings, setTrainings] =useState ([]);
 
+    
     useEffect(()=>fetchData(), []);
 
+    // fetches api from "gettrainings" endpoint
     const fetchData = ()=> {
         fetch("https://traineeapp.azurewebsites.net/gettrainings")
         .then(response => response.json())
         .then(data =>setTrainings(data))
         .catch(err => console.error(err))
       };
-
+        // save new training and link training to customer
       const saveTraining = (training) => {
         fetch ("https://traineeapp.azurewebsites.net/api/trainings",{
           method: "POST",
@@ -28,6 +30,8 @@ function Traininglist() {
             customer: training.customer,
           })
         })
+        // automatically reloads page after saving new training
+        .then(response => fetchData(response))
       }
 
       const [columnDefs] = useState([

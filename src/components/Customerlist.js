@@ -4,6 +4,7 @@ import 'ag-grid-community/styles/ag-theme-material.css';
 import React ,{ useEffect, useState } from "react"
 import Addcustomer from "./Addcustomer";
 import Button from '@mui/material/Button'
+import Editcustomer from "./EditCustomer";
 
 function Customerlist() {
 
@@ -25,7 +26,7 @@ function Customerlist() {
           },
           body: JSON.stringify(customer)
         })
-        .then(res => fetchData())
+        .then(res => fetchData(res))
         .catch(err => console.error(err))
       }
 
@@ -41,6 +42,18 @@ function Customerlist() {
       }
     }
 
+    const editCustomer =(customer, link) => {
+      fetch(link,{
+        method: "PUT",
+        headers: {
+          "Content-Type" : "application/json"
+        },
+        body: JSON.stringify(customer)
+      })
+      .then(res => fetchData(res))
+      .catch(err => console.error(err))
+    };
+
 
     const [columnDefs] = useState([
         {field: "firstname", sortable: true, filter: true, flex: 1},
@@ -53,7 +66,8 @@ function Customerlist() {
         {headerName: "Delete", cellRenderer: params => 
           <Button size="small" color="error" onClick={() => deleteCustomer(params)}>
               Delete</Button>, 
-          width: 120}
+          width: 120},
+          {cellRenderer: row => <Editcustomer editCustomer={editCustomer} customer={row.data} />}
     ])
 
 
