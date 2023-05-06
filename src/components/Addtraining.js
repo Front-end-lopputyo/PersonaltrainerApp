@@ -11,6 +11,7 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/fi';
 import { StaticDateTimePicker } from '@mui/x-date-pickers/StaticDateTimePicker';
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
 
 
 function Addtraining(props) {
@@ -55,7 +56,7 @@ function Addtraining(props) {
     }
     return (
         <div>
-            <Button style={{ margin: 10, display: "flex", marginLeft: "left" }} color="success" variant="outlined" onClick={handleClickOpen}>
+            <Button style={{ margin: 10, display: "flex", marginLeft: "left" }} startIcon={<AddIcon/>} color="success" variant="outlined" onClick={handleClickOpen}>
                 Add Training
             </Button>
             <Dialog open={open} onClose={handleClose}>

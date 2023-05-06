@@ -5,6 +5,7 @@ import React ,{ useEffect, useState } from "react"
 import Addcustomer from "./Addcustomer";
 import Button from '@mui/material/Button'
 import Editcustomer from "./EditCustomer";
+import DeleteIcon from '@mui/icons-material/Delete';
 
 function Customerlist() {
 
@@ -64,10 +65,11 @@ function Customerlist() {
         {field: "email", sortable: true, filter: true,flex:1},
         {field: "phone", sortable: true, filter: true,flex:1},
         {headerName: "Delete", cellRenderer: params => 
-          <Button size="small" color="error" onClick={() => deleteCustomer(params)}>
+          <Button startIcon={<DeleteIcon />} size="small" color="error" onClick={() => deleteCustomer(params)}>
               Delete</Button>, 
           width: 120},
           {cellRenderer: row => <Editcustomer editCustomer={editCustomer} customer={row.data} />}
+          
     ])
 
 
@@ -78,6 +80,8 @@ function Customerlist() {
         style={{height: 600, width:"90%", margin: "auto"}}>
             <Addcustomer saveCustomer={saveCustomer}/>
             <AgGridReact
+                pagination={true}
+                paginationPageSize={10}
                 rowData = {customers}
                 columnDefs = {columnDefs}>
             </AgGridReact>
