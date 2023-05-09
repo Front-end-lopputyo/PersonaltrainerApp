@@ -133,7 +133,7 @@ export default function PersistentDrawerLeft() {
             <ListItem key={text} disablePadding component={Link} to ={"/" + text}>
               <ListItemButton>
                 <ListItemIcon>
-                  {index % 2 === 0 ? <FitnessCenterIcon /> : <EmojiPeopleIcon />}
+                  {index % 3 === 0 ? <FitnessCenterIcon /> : <EmojiPeopleIcon />}
                 </ListItemIcon>
                <ListItemText primary={text} /> 
               </ListItemButton>
