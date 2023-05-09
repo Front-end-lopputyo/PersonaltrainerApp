@@ -16,11 +16,10 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 import EmojiPeopleIcon from '@mui/icons-material/EmojiPeople';
 import Customerlist from './Customerlist';
+import Traininglist from './Traininglist';
 
 import {
   BrowserRouter,
@@ -28,6 +27,7 @@ import {
   Route,
   Link
   } from "react-router-dom";
+import { Switch } from '@mui/material';
 
 const drawerWidth = 240;
 
@@ -107,6 +107,7 @@ export default function PersistentDrawerLeft() {
           </Typography>
         </Toolbar>
       </AppBar>
+      <BrowserRouter>
       <Drawer
         sx={{
           width: drawerWidth,
@@ -128,30 +129,25 @@ export default function PersistentDrawerLeft() {
         
         <List>
           {['Trainings', 'Customers'].map((text, index) => (
-            <ListItem key={text} disablePadding>
+            <ListItem key={text} disablePadding component={Link} to ={"/" + text}>
               <ListItemButton>
                 <ListItemIcon>
                   {index % 2 === 0 ? <FitnessCenterIcon /> : <EmojiPeopleIcon />}
                 </ListItemIcon>
-                <BrowserRouter>
-                <Link to="/customers"><ListItemText primary={text} /></Link>
-                <Routes>
-                <Route path="/customers" component={<Customerlist/>} />
-                </Routes>
-                </BrowserRouter>
+               <ListItemText primary={text} /> 
               </ListItemButton>
             </ListItem>
           ))}
         </List>
       </Drawer>
+      <Routes>
+            <Route exact path="/" element={<Traininglist/>} />
+            <Route path="/customers" element={<Customerlist/>} />
+            </Routes>
+      </BrowserRouter>
       <Main open={open}>
         <DrawerHeader />
-        <Typography paragraph>
-          
-        </Typography>
-        <Typography paragraph>
-          
-        </Typography>
+       
       </Main>
     </Box>
   );

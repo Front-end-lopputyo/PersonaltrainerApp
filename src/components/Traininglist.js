@@ -2,10 +2,8 @@ import { AgGridReact } from "ag-grid-react";
 import React, {useState, useEffect} from "react";
 import Addtraining from "./Addtraining";
 import dayjs from 'dayjs';
-import DeleteIcon from '@mui/icons-material/Delete';
-import Button from '@mui/material/Button';
-import EditCustomer from "./EditCustomer";
-import Edittraining from "./Edittraining";
+
+
 
 function Traininglist() {
     const [trainings, setTrainings] =useState ([]);
