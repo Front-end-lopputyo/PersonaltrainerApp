@@ -26,10 +26,11 @@ import {
   Route,
   Link
   } from "react-router-dom";
+import Calendar from './Calendar';
 
 
 
-const drawerWidth = 240;
+const drawerWidth = 165;
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
@@ -133,7 +134,7 @@ export default function PersistentDrawerLeft() {
             <ListItem key={text} disablePadding component={Link} to ={"/" + text}>
               <ListItemButton>
                 <ListItemIcon>
-                  {index % 3 === 0 ? <FitnessCenterIcon /> : <EmojiPeopleIcon />}
+                  {index % 2 === 0 ? <FitnessCenterIcon /> : <EmojiPeopleIcon />}
                 </ListItemIcon>
                <ListItemText primary={text} /> 
               </ListItemButton>
@@ -144,6 +145,7 @@ export default function PersistentDrawerLeft() {
       <Routes>
             <Route exact path="/trainings" element={<Traininglist/>} />
             <Route path="/customers" element={<Customerlist/>} />
+            <Route path="/calendar" element={<Calendar/>} />
             </Routes>
       </BrowserRouter>
       <Main open={open}>
