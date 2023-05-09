@@ -2,11 +2,15 @@ import { AgGridReact } from "ag-grid-react";
 import React, {useState, useEffect} from "react";
 import Addtraining from "./Addtraining";
 import dayjs from 'dayjs';
+import DeleteIcon from '@mui/icons-material/Delete';
+import Button from '@mui/material/Button';
+import EditCustomer from "./EditCustomer";
+import Edittraining from "./Edittraining";
 
 function Traininglist() {
     const [trainings, setTrainings] =useState ([]);
 
-    
+
     useEffect(()=>fetchData(), []);
 
     // fetches api from "gettrainings" endpoint
@@ -32,8 +36,12 @@ function Traininglist() {
         })
         // automatically reloads page after saving new training
         .then(response => fetchData(response))
-      }
+      };
 
+   
+
+  
+        // renders data inside ag grid
       const [columnDefs] = useState([
         {field: "date", sortable: true, filter: true, flex: 1, cellRenderer: ({ value }) => {
           const date = new Date(value);
@@ -43,6 +51,8 @@ function Traininglist() {
         {field: "duration", sortable: true, filter: true, flex:1},
         {field: "activity", sortable: true, filter: true, flex:1},
         {field: "customer.firstname",headerName: "Firstname", sortable: true, filter: true, flex:1},
+        
+        
     ])
 
 
