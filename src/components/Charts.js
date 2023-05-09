@@ -26,7 +26,7 @@ export default function Charts() {
     };
 
     return (
-        <div style={{ width: '90%', height: '86vh', marginTop: '5%' }}>
+        <div style={{ width: '100%', height: '86vh', marginTop: '5%', paddingLeft: '5%', paddingRight : '5%' }}>
             <ResponsiveContainer minWidth="100%" minHeight="100%">
                 <BarChart data={data}>
                     <CartesianGrid />

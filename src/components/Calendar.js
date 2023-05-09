@@ -24,7 +24,7 @@ export default function Calendar() {
     }));
 
     return (
-        <div style={{ width: '100%', marginTop: '5%' }}>
+        <div style={{ width: '100%', marginTop: '5%', paddingLeft: '5%', paddingRight : '5%'}}>
             <FullCalendar
                 events={events}
                 eventContent={(event) => {
