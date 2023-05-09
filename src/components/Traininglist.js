@@ -56,7 +56,7 @@ function Traininglist() {
 
     return (
         <div className="ag-theme-material"
-      style={{height: 600, width:"90%", margin: "auto"}}>
+      style={{height: 600, width:"90%", margin: "100px"}}>
         <Addtraining saveTraining={saveTraining} />
         <AgGridReact
             rowData= {trainings}

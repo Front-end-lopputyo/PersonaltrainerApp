@@ -28,6 +28,7 @@ import {
   } from "react-router-dom";
 
 
+
 const drawerWidth = 240;
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
@@ -88,9 +89,9 @@ export default function PersistentDrawerLeft() {
   };
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex'}}>
       <CssBaseline />
-      <AppBar position="fixed" open={open}>
+      <AppBar  position="fixed" open={open}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -103,6 +104,7 @@ export default function PersistentDrawerLeft() {
           </IconButton>
           <Typography variant="h6" noWrap component="div">
             Personal Trainer App
+            
           </Typography>
         </Toolbar>
       </AppBar>
