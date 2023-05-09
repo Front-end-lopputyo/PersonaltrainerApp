@@ -6,11 +6,14 @@ import Addcustomer from "./Addcustomer";
 import Button from '@mui/material/Button'
 import Editcustomer from "./EditCustomer";
 import DeleteIcon from '@mui/icons-material/Delete';
+import Snackbar from '@mui/material/Snackbar';
 import Export from "./Export";
 
 function Customerlist() {
 
   const [customers, setCustomers] = useState([]);
+  const [open, setOpen] = useState(false);
+  const [msg, setMsg] = useState([]);
 
   useEffect(() => fetchData(), []);
 
@@ -28,15 +31,23 @@ function Customerlist() {
       },
       body: JSON.stringify(customer)
     })
-      .then(res => fetchData(res))
-      .catch(err => console.error(err))
+    .then(response => {
+      if(response.ok){
+      setMsg('Customer info saved');
+      setOpen(true);
+      fetchData();
   }
+  })
+  .catch(err => console.error(err))
+}
 
   const deleteCustomer = (params) => {
     if (window.confirm('Confirm delete')) {
       fetch(params.data.links[0].href, { method: "DELETE" })
         .then(response => {
           if (response.ok) {
+            setMsg("Customer deleted succesfully");
+            setOpen(true);
             fetchData();
           }
         })
@@ -52,10 +63,17 @@ function Customerlist() {
       },
       body: JSON.stringify(customer)
     })
-      .then(res => fetchData(res))
-      .catch(err => console.error(err))
-  };
-
+    .then(response => {
+      if(response.ok){
+          setMsg("Customer information changed");
+          setOpen(true);
+          fetchData();
+      }
+      
+  })
+  .catch(err => console.error(err))
+}
+      
 
   const [columnDefs] = useState([
     { field: "firstname", sortable: true, filter: true, flex: 1 },
@@ -90,6 +108,12 @@ function Customerlist() {
         rowData={customers}
         columnDefs={columnDefs}>
       </AgGridReact>
+      <Snackbar
+         open={open}
+         autoHideDuration={3500}
+         onClose={() => setOpen(false)}
+         message = {msg}
+         />
     </div>
   )
 }

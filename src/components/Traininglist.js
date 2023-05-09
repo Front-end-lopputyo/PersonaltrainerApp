@@ -2,11 +2,17 @@ import { AgGridReact } from "ag-grid-react";
 import React, {useState, useEffect} from "react";
 import Addtraining from "./Addtraining";
 import dayjs from 'dayjs';
+import Snackbar from '@mui/material/Snackbar';
+import { Button } from "@mui/material";
+import DeleteIcon from '@mui/icons-material/Delete';
+
 
 
 
 function Traininglist() {
     const [trainings, setTrainings] =useState ([]);
+    const [open, setOpen] = useState(false);
+    const [msg, setMsg] = useState([]);
 
 
     useEffect(()=>fetchData(), []);
@@ -32,10 +38,31 @@ function Traininglist() {
             customer: training.customer,
           })
         })
-        // automatically reloads page after saving new training
-        .then(response => fetchData(response))
-      };
+        .then(response => {
+          if(response.ok){
+          setMsg('Training added for customer' );
+          setOpen(true);
+          fetchData();
+      }
+      })
+      .catch(err => console.error(err))
+  }
 
+  const deleteTraining =(params) => {
+    if (window.confirm("confirm delete")) {
+      fetch('https://traineeapp.azurewebsites.net/api/trainings/' + params,
+      {method: "DELETE"})
+      
+      .then(response => {
+        if (response.ok) {
+          setMsg("Training deleted succesfully");
+          setOpen(true);
+          fetchData();
+        }
+      })
+      .catch(err => console.error(err))
+  }
+}
    
 
   
@@ -49,6 +76,10 @@ function Traininglist() {
         {field: "duration", sortable: true, filter: true, flex:1},
         {field: "activity", sortable: true, filter: true, flex:1},
         {field: "customer.firstname",headerName: "Firstname", sortable: true, filter: true, flex:1},
+        {  
+          cellRenderer: params => 
+          <Button size="small" color="error" startIcon={<DeleteIcon/>} onClick={() => deleteTraining(params.data.id)}>
+              Delete</Button>,},
         
         
     ])
@@ -62,6 +93,12 @@ function Traininglist() {
             rowData= {trainings}
             columnDefs = {columnDefs}>
         </AgGridReact>
+        <Snackbar
+         open={open}
+         autoHideDuration={3500}
+         onClose={() => setOpen(false)}
+         message = {msg}
+         />
       </div>
     )
 }

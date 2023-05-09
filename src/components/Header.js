@@ -17,8 +17,11 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 import EmojiPeopleIcon from '@mui/icons-material/EmojiPeople';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import Customerlist from './Customerlist';
 import Traininglist from './Traininglist';
+import Data from './Data';
+import FileDownloadIcon from '@mui/icons-material/FileDownload';
 
 import {
   BrowserRouter,
@@ -130,11 +133,11 @@ export default function PersistentDrawerLeft() {
         </DrawerHeader>
         
         <List>
-          {['Trainings', 'Customers'].map((text, index) => (
+          {['Trainings', 'Customers','Calendar', 'Data' ].map((text, index) => (
             <ListItem key={text} disablePadding component={Link} to ={"/" + text}>
               <ListItemButton>
                 <ListItemIcon>
-                  {index % 2 === 0 ? <FitnessCenterIcon /> : <EmojiPeopleIcon />}
+                  {index  === 0 ? <FitnessCenterIcon /> : index === 1? <EmojiPeopleIcon />: index===2?<CalendarMonthIcon/>:<FileDownloadIcon/> }
                 </ListItemIcon>
                <ListItemText primary={text} /> 
               </ListItemButton>
@@ -142,10 +145,15 @@ export default function PersistentDrawerLeft() {
           ))}
         </List>
       </Drawer>
+      <Link to="/">Trainings</Link>{' '}
+      <Link to="/customers">Trainings</Link>{' '}
+      <Link to="/calendar">Trainings</Link>{' '}
+      <Link to="/data">Trainings</Link>{' '}
       <Routes>
             <Route exact path="/trainings" element={<Traininglist/>} />
             <Route path="/customers" element={<Customerlist/>} />
             <Route path="/calendar" element={<Calendar/>} />
+            <Route path="/data" element={<Data/>} />
             </Routes>
       </BrowserRouter>
       <Main open={open}>

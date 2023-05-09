@@ -35,7 +35,10 @@ function Export() {
   };
 
   return (
-    <Button style={{ margin: 10, display: "flex", marginLeft: "left" }} onClick={handleClick} color="success" variant="contained">Download data</Button>
+    <div>  
+    <Button style={{ margin: 10, display: "flex", marginLeft: "left" }} onClick={handleClick} size="small" color="success" variant="contained">Download</Button>
+   
+    </div>
   );
 }
 export default Export;
