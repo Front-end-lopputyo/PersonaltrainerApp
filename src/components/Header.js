@@ -22,18 +22,20 @@ import Customerlist from './Customerlist';
 import Traininglist from './Traininglist';
 import Data from './Data';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
+import PieChartIcon from '@mui/icons-material/PieChart';
+import Charts from './Charts';
 
 import {
   BrowserRouter,
   Routes,
   Route,
   Link
-  } from "react-router-dom";
+} from "react-router-dom";
 import Calendar from './Calendar';
 
 
 
-const drawerWidth = 165;
+const drawerWidth = 180;
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
@@ -43,7 +45,6 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    marginLeft: `-${drawerWidth}px`,
     ...(open && {
       transition: theme.transitions.create('margin', {
         easing: theme.transitions.easing.easeOut,
@@ -93,9 +94,9 @@ export default function PersistentDrawerLeft() {
   };
 
   return (
-    <Box sx={{ display: 'flex'}}>
+    <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar  position="fixed" open={open}>
+      <AppBar position="fixed" open={open}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -108,57 +109,51 @@ export default function PersistentDrawerLeft() {
           </IconButton>
           <Typography variant="h6" noWrap component="div">
             Personal Trainer App
-            
+
           </Typography>
         </Toolbar>
       </AppBar>
       <BrowserRouter>
-      <Drawer
-        sx={{
-          width: drawerWidth,
-          flexShrink: 0,
-          '& .MuiDrawer-paper': {
+        <Drawer
+          sx={{
             width: drawerWidth,
-            boxSizing: 'border-box',
-          },
-        }}
-        variant="persistent"
-        anchor="left"
-        open={open}
-      >
-        <DrawerHeader>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-          </IconButton>
-        </DrawerHeader>
-        
-        <List>
-          {['Trainings', 'Customers','Calendar', 'Data' ].map((text, index) => (
-            <ListItem key={text} disablePadding component={Link} to ={"/" + text}>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index  === 0 ? <FitnessCenterIcon /> : index === 1? <EmojiPeopleIcon />: index===2?<CalendarMonthIcon/>:<FileDownloadIcon/> }
-                </ListItemIcon>
-               <ListItemText primary={text} /> 
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
-      </Drawer>
-      <Link to="/">Trainings</Link>{' '}
-      <Link to="/customers">Trainings</Link>{' '}
-      <Link to="/calendar">Trainings</Link>{' '}
-      <Link to="/data">Trainings</Link>{' '}
-      <Routes>
-            <Route exact path="/trainings" element={<Traininglist/>} />
-            <Route path="/customers" element={<Customerlist/>} />
-            <Route path="/calendar" element={<Calendar/>} />
-            <Route path="/data" element={<Data/>} />
-            </Routes>
+            flexShrink: 0,
+            '& .MuiDrawer-paper': {
+              width: drawerWidth,
+              boxSizing: 'border-box',
+            },
+          }}
+          anchor="left"
+          open={open}
+        >
+          <DrawerHeader>
+            <IconButton onClick={handleDrawerClose}>
+              {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+            </IconButton>
+          </DrawerHeader>
+          <List>
+            {['Training', 'Customers', 'Calendar', 'Charts', 'Data'].map((text, index) => (
+              <ListItem key={text} disablePadding component={Link} to={"/" + text}>
+                <ListItemButton style={{ color: "#1976D2" }}>
+                  <ListItemIcon>
+                    {index === 0 ? <FitnessCenterIcon /> : index === 1 ? <EmojiPeopleIcon /> : index === 2 ? <CalendarMonthIcon /> : index === 3 ? <PieChartIcon /> :<FileDownloadIcon />}
+                  </ListItemIcon>
+                  <ListItemText primary={text}/>
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
+        </Drawer>
+        <Routes>
+          <Route exact path="/" element={<Traininglist />} />
+          <Route path="/training" element={<Traininglist />} />
+          <Route path="/customers" element={<Customerlist />} />
+          <Route path="/calendar" element={<Calendar />} />
+          <Route path="/charts" element={<Charts />} />
+          <Route path="/data" element={<Data />} />
+        </Routes>
       </BrowserRouter>
       <Main open={open}>
-        <DrawerHeader />
-       
       </Main>
     </Box>
   );

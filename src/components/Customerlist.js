@@ -31,15 +31,15 @@ function Customerlist() {
       },
       body: JSON.stringify(customer)
     })
-    .then(response => {
-      if(response.ok){
-      setMsg('Customer info saved');
-      setOpen(true);
-      fetchData();
+      .then(response => {
+        if (response.ok) {
+          setMsg('Customer info saved');
+          setOpen(true);
+          fetchData();
+        }
+      })
+      .catch(err => console.error(err))
   }
-  })
-  .catch(err => console.error(err))
-}
 
   const deleteCustomer = (params) => {
     if (window.confirm('Confirm delete')) {
@@ -63,17 +63,17 @@ function Customerlist() {
       },
       body: JSON.stringify(customer)
     })
-    .then(response => {
-      if(response.ok){
+      .then(response => {
+        if (response.ok) {
           setMsg("Customer information changed");
           setOpen(true);
           fetchData();
-      }
-      
-  })
-  .catch(err => console.error(err))
-}
-      
+        }
+
+      })
+      .catch(err => console.error(err))
+  }
+
 
   const [columnDefs] = useState([
     { field: "firstname", sortable: true, filter: true, flex: 1 },
@@ -96,10 +96,9 @@ function Customerlist() {
 
   return (
     <div className="ag-theme-material"
-      style={{ height: 600, width: "90%", margin: "100px" }}>
+      style={{ height: 600, width: "90%", margin: "3%" }}>
       <div>
         <Addcustomer saveCustomer={saveCustomer} />
-        <Export />
       </div>
 
       <AgGridReact
@@ -109,11 +108,11 @@ function Customerlist() {
         columnDefs={columnDefs}>
       </AgGridReact>
       <Snackbar
-         open={open}
-         autoHideDuration={3500}
-         onClose={() => setOpen(false)}
-         message = {msg}
-         />
+        open={open}
+        autoHideDuration={3500}
+        onClose={() => setOpen(false)}
+        message={msg}
+      />
     </div>
   )
 }

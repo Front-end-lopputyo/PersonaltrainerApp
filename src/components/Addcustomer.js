@@ -30,86 +30,86 @@ function Addcustomer(props) {
         props.saveCustomer(customer);
         handleClose();
     }
-        return (
-            <div>
-                <Button style={{ margin: 10, display: "flex", marginLeft: "left" }} startIcon={<AddIcon/>}  color="success" variant="outlined" onClick={handleClickOpen}>
-                    Add Customer
-                </Button>
-                <Dialog open={open} onClose={handleClose}>
-                    <DialogTitle>New customer</DialogTitle>
-                    <DialogContent>
-                        <TextField
-                            autoFocus
-                            margin="dense"
-                            name="firstname"
-                            value={customer.firstname}
-                            onChange={e => handleInputChange(e)}
-                            label="First name"
-                            fullWidth
-                            variant="standard"
-                        />
-                        <TextField
-                            margin="dense"
-                            name="lastname"
-                            value={customer.lastname}
-                            onChange={e => handleInputChange(e)}
-                            label="Last name"
-                            fullWidth
-                            variant="standard"
-                        />
-                        <TextField
-                            margin="dense"
-                            name="streetaddress"
-                            value={customer.streetaddress}
-                            onChange={e => handleInputChange(e)}
-                            label="Street address"
-                            fullWidth
-                            variant="standard"
-                        />
-                        <TextField
-                            margin="dense"
-                            name="postcode"
-                            value={customer.postcode}
-                            onChange={e => handleInputChange(e)}
-                            label="Postcode"
-                            fullWidth
-                            variant="standard"
-                        />
-                        <TextField
-                            margin="dense"
-                            name="city"
-                            value={customer.city}
-                            onChange={e => handleInputChange(e)}
-                            label="City"
-                            fullWidth
-                            variant="standard"
-                        />
-                        <TextField
-                            margin="dense"
-                            name="email"
-                            value={customer.email}
-                            onChange={e => handleInputChange(e)}
-                            label="Email address"
-                            fullWidth
-                            variant="standard"
-                        />
-                        <TextField
-                            margin="dense"
-                            name="phone"
-                            value={customer.phone}
-                            onChange={e => handleInputChange(e)}
-                            label="Phone number"
-                            fullWidth
-                            variant="standard"
-                        />
-                    </DialogContent>
-                    <DialogActions>
-                        <Button onClick={handleClose}>Cancel</Button>
-                        <Button onClick={listCustomer}>Save</Button>
-                    </DialogActions>
-                </Dialog>
-            </div>
-        )
-    }
+    return (
+        <div>
+            <Button style={{ margin: 10, display: "flex", marginLeft: "left" }} startIcon={<AddIcon />} color="success" variant="outlined" onClick={handleClickOpen}>
+                Add Customer
+            </Button>
+            <Dialog open={open} onClose={handleClose}>
+                <DialogTitle>New customer</DialogTitle>
+                <DialogContent>
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        name="firstname"
+                        value={customer.firstname}
+                        onChange={e => handleInputChange(e)}
+                        label="First name"
+                        fullWidth
+                        variant="standard"
+                    />
+                    <TextField
+                        margin="dense"
+                        name="lastname"
+                        value={customer.lastname}
+                        onChange={e => handleInputChange(e)}
+                        label="Last name"
+                        fullWidth
+                        variant="standard"
+                    />
+                    <TextField
+                        margin="dense"
+                        name="streetaddress"
+                        value={customer.streetaddress}
+                        onChange={e => handleInputChange(e)}
+                        label="Street address"
+                        fullWidth
+                        variant="standard"
+                    />
+                    <TextField
+                        margin="dense"
+                        name="postcode"
+                        value={customer.postcode}
+                        onChange={e => handleInputChange(e)}
+                        label="Postcode"
+                        fullWidth
+                        variant="standard"
+                    />
+                    <TextField
+                        margin="dense"
+                        name="city"
+                        value={customer.city}
+                        onChange={e => handleInputChange(e)}
+                        label="City"
+                        fullWidth
+                        variant="standard"
+                    />
+                    <TextField
+                        margin="dense"
+                        name="email"
+                        value={customer.email}
+                        onChange={e => handleInputChange(e)}
+                        label="Email address"
+                        fullWidth
+                        variant="standard"
+                    />
+                    <TextField
+                        margin="dense"
+                        name="phone"
+                        value={customer.phone}
+                        onChange={e => handleInputChange(e)}
+                        label="Phone number"
+                        fullWidth
+                        variant="standard"
+                    />
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleClose}>Cancel</Button>
+                    <Button onClick={listCustomer}>Save</Button>
+                </DialogActions>
+            </Dialog>
+        </div>
+    )
+}
 
 export default Addcustomer;

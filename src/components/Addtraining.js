@@ -56,7 +56,7 @@ function Addtraining(props) {
     }
     return (
         <div>
-            <Button style={{ margin: 10, display: "flex", marginLeft: "left" }} startIcon={<AddIcon/>} color="success" variant="outlined" onClick={handleClickOpen}>
+            <Button style={{ margin: 10, display: "flex", marginLeft: "left" }} startIcon={<AddIcon />} color="success" variant="outlined" onClick={handleClickOpen}>
                 Add Training
             </Button>
             <Dialog open={open} onClose={handleClose}>

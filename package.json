@@ -27,6 +27,7 @@
     "react-table": "^7.8.0",
     "react-table-6": "^6.11.0",
     "react-table-7": "^0.0.1-security",
+    "recharts": "^2.6.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

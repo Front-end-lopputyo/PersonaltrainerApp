@@ -36,7 +36,7 @@ function Export() {
 
   return (
     <div>  
-    <Button style={{ margin: 10, display: "flex", marginLeft: "left" }} onClick={handleClick} size="small" color="success" variant="contained">Download</Button>
+    <Button style={{ margin: 10, display: "center", marginLeft: "left"}} onClick={handleClick} size="large" color="success" variant="contained">Download</Button>
    
     </div>
   );

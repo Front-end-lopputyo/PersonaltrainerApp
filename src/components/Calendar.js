@@ -6,14 +6,14 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 export default function Calendar() {
 
     const [training, setTraining] = useState([]);
-    
-    useEffect(() => 
-      fetchData(), []);
-  
+
+    useEffect(() =>
+        fetchData(), []);
+
     const fetchData = () => {
-      fetch('https://traineeapp.azurewebsites.net/gettrainings')
-        .then(response => response.json())
-        .then(data => setTraining(data));
+        fetch('https://traineeapp.azurewebsites.net/gettrainings')
+            .then(response => response.json())
+            .then(data => setTraining(data));
     }
 
     const events = training.map(item => ({
@@ -23,45 +23,45 @@ export default function Calendar() {
         textColor: '#ffffff'
     }));
 
-  return (
-    <div style={{ width: '100%', marginTop: '1%' }}>
-        <FullCalendar
-            events={events}
-            eventContent={(event) => {
-                return(
-                    <div>
-                        <p>{event.event._def.title}</p>
-                        {event.event.start && event.event.end && <p>{event.event.start.toLocaleString('de-DE', {hour: 'numeric', minute: 'numeric'})} - {event.event.end.toLocaleString('de-DE', {hour: 'numeric', minute: 'numeric'})}</p>}
-                    </div>
-                )
-            }}
-            aspectRatio={2.5}
-            plugins={[ dayGridPlugin, timeGridPlugin]}
-            initialView="timeGridWeek"
-            headerToolbar={{
-                left: 'prev,next today',
-                center: 'title',
-                right: 'timeGridDay,timeGridWeek,dayGridMonth'
-            }}
-            firstDay={1}
-            selectable={true}
-            allDaySlot={false}
-            dayHeaderFormat={{
-                weekday: 'long', 
-                month: '2-digit', 
-                day: '2-digit',
-                year: 'numeric',
-                omitCommas: true
-            }}
-            slotLabelInterval="01:00"
-            slotDuration="00:15"
-            slotLabelFormat={{
-                hour12: false,
-                hour: '2-digit',
-                minute: '2-digit',
-                omitZeroMinute: false,
-            }}
-        />
-    </div>
-  )
+    return (
+        <div style={{ width: '100%', marginTop: '5%' }}>
+            <FullCalendar
+                events={events}
+                eventContent={(event) => {
+                    return (
+                        <div>
+                            <p>{event.event._def.title}</p>
+                            {event.event.start && event.event.end && <p>{event.event.start.toLocaleString('de-DE', { hour: 'numeric', minute: 'numeric' })} - {event.event.end.toLocaleString('de-DE', { hour: 'numeric', minute: 'numeric' })}</p>}
+                        </div>
+                    )
+                }}
+                aspectRatio={2.5}
+                plugins={[dayGridPlugin, timeGridPlugin]}
+                initialView="timeGridWeek"
+                headerToolbar={{
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'timeGridDay,timeGridWeek,dayGridMonth'
+                }}
+                firstDay={1}
+                selectable={true}
+                allDaySlot={false}
+                dayHeaderFormat={{
+                    weekday: 'long',
+                    month: '2-digit',
+                    day: '2-digit',
+                    year: 'numeric',
+                    omitCommas: true
+                }}
+                slotLabelInterval="01:00"
+                slotDuration="00:15"
+                slotLabelFormat={{
+                    hour12: false,
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    omitZeroMinute: false,
+                }}
+            />
+        </div>
+    )
 }
