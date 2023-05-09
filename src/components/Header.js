@@ -7,7 +7,6 @@ import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
@@ -27,7 +26,7 @@ import {
   Route,
   Link
   } from "react-router-dom";
-import { Switch } from '@mui/material';
+
 
 const drawerWidth = 240;
 
@@ -141,7 +140,7 @@ export default function PersistentDrawerLeft() {
         </List>
       </Drawer>
       <Routes>
-            <Route exact path="/" element={<Traininglist/>} />
+            <Route exact path="/trainings" element={<Traininglist/>} />
             <Route path="/customers" element={<Customerlist/>} />
             </Routes>
       </BrowserRouter>
